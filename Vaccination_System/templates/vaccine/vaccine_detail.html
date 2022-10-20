@@ -1,0 +1,33 @@
+{% extends 'vaccine/base.html' %}
+
+{% block meta %} {{object.name}} {% endblock %}
+
+{% block main %}
+
+    <aside id="fh5co-hero" class="js-fullheight">
+        <div class="flexslider js-fullheight">
+            <ul class="slides">
+            <li style='background-image: url({{object.picture.url}});'>
+                <div class="overlay-gradient"></div>
+                <div class="container">
+                    <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+                        <div class="slider-text-inner">
+                            <h2 style="color: black;">{{object.name}}</h2>>
+                        </div>
+                    </div>
+                </div>
+            </li>
+    </aside> 
+
+    <div id="fh5co-services-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+					<h2>{{object.name}}</h2>
+					<p>{{object.description}}</p>
+				</div>
+            </div>
+	    </div>
+    </div>
+
+{% endblock %}

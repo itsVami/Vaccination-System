@@ -1,0 +1,17 @@
+<ul>
+    {% for cat in category %}
+            {% if cat.parent == None %}
+                <li>
+                    <!-- <a href="{% url 'vaccine:category' cat.slug %}">{{cat.title}}</a> -->
+                    {% if cat.children.active %}
+                        {% include 'vaccine/partials/category_loop.html' %}
+                    {% endif %}  
+                </li>
+            {% endif %}   
+    {% endfor %}
+    <li class="cta">
+        <a href="#">تماس با ما</a>
+
+        <li class="cta"><a href="#">ورود به سامانه</a></li>
+    </li>
+</ul>

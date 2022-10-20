@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Patient
 
@@ -6,3 +5,4 @@ from .models import Patient
 
 class PatientList(ListView):
     queryset = Patient.objects.all()
+

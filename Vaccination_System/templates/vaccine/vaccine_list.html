@@ -1,0 +1,75 @@
+{% extends 'vaccine/base.html' %}
+
+{% load static %}
+
+{% block meta %} {% if category.title %} {{category.title}} {% else %} Vaccines {% endif %} {% endblock %}
+
+{% block main %}
+
+    <aside id="fh5co-hero" class="js-fullheight">
+        <div class="flexslider js-fullheight">
+            <ul class="slides">
+                <li style='background-image: url("{% static "patient/images/S1.jpg" %}");'>
+                    <div class="overlay-gradient"></div>
+                    <div class="container">
+                        <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+                            <div class="slider-text-inner">
+                                <h2 style="color: black;">استعلام واکسیناسیون کرونا</h2>
+                                <p><a href="#" class="btn btn-primary btn-lg">ورود به سامانه</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style='background-image: url("{% static "patient/images/S2.jpeg" %}");'>
+                    <div class="container">
+                        <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+                            <div class="slider-text-inner">
+                                <h2 style="color: black;">ثبت نام واکسیناسیون کرونا</h2>
+                                <p><a href="#" class="btn btn-primary btn-lg">ورود به سامانه</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style='background-image: url("{% static "patient/images/S3.jpg" %}");'>
+                    <div class="container">
+                        <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+                            <div class="slider-text-inner">
+                                <h2 style="color: black;">لیــست مراکـــز واکسینــاسیــون</h2>
+                                <p><a href="#" class="btn btn-primary btn-lg">مراکـــز واکسیناسیون</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </aside>    
+
+    <div id="fh5co-work-section" class="fh5co-light-grey-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+                    <h2>{% if category.title %} {{category.title}} {% else %} واکسن ها {% endif %}</h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for vaccine in object_list %}
+                    <div class="col-md-4 animate-box">
+                        <a href="{% url 'vaccine:details' vaccine.slug %}" class="item-grid text-center">
+                            <div class="image" style="background-image: url({{vaccine.picture.url}})"></div>
+                            <div class="v-align">
+                                <div class="v-align-middle">
+                                    <h3 class="title">{{vaccine.name}}</h3>
+                                    <h5 class="category">{{ vaccine.country }}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% empty %}
+                    <h4 style="padding: 8px ; margin-bottom: 45px;">متاسقانه محتوایی برای نمایش در این مورد وجود ندارد.</h4>
+                {% endfor %}
+               
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

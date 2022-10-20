@@ -1,0 +1,127 @@
+{% load static %}
+
+{% load base_tags %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Vaccination-System | {% block meta %} {% endblock %}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="{% static 'patient/favicon.ico' %}">
+
+	<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'patient/css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'patient/css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'patient/css/bootstrap.css' %}">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'patient/css/flexslider.css' %}">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{% static 'patient/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'patient/css/owl.theme.default.min.css' %}">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'patient/css/style.css' %}">
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'patient/js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+	
+	
+	<div id="fh5co-page">
+	<header id="fh5co-header" role="banner">
+		<div class="container">
+			<div class="header-inner">
+				<h1><a href="{% url 'vaccine:vaccines' %}">{% Web_Title %}</a></h1>
+				<nav role="navigation">
+					{% Category_Navbar %}
+				</nav>
+			</div>
+		</div>
+	</header>
+	
+	<div class="container">
+		
+	</div>
+	
+	<!-- Main Content -->
+	{% block main %}
+	
+	{% endblock %}
+	
+	
+	<footer id="fh5co-footer" role="contentinfo">
+	
+		<div class="container">
+			<div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h3>آدرس</h3>
+				<p>کرمان، چهار راه شفا ،مرکز بهداشت</p>
+				<p><a href="#" class="btn btn-primary btn-outline with-arrow btn-sm">تماس با ما </a></p>
+			</div>
+			<div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h3>پیوندهای مرتبط </h3>
+				<ul class="float">
+					<li><a href="https://www.kmu.ac.ir/fa">دانشگاه علوم پزشکی استان کرمان</a></li>
+					<li><a href="https://behdasht.gov.ir/">وزارت بهداشت</a></li>
+					<li><a href="https://kermanhc.kmu.ac.ir/fa">مراکـــز بهداشت استان کرمان</a></li>
+				</ul>
+				<ul class="float">
+					<li><a href="https://www.kmu.ac.ir/fa">دانشگاه علوم پزشکی استان کرمان</a></li>
+					<li><a href="https://behdasht.gov.ir/">وزارت بهداشت</a></li>
+					<li><a href="https://kermanhc.kmu.ac.ir/fa">مراکـــز بهداشت استان کرمان</a></li>
+				</ul>
+
+			</div>
+			<div class="col-md-12 fh5co-copyright text-center">
+				<p>&copy; Copyright 2018-2023 &copy; -  کلیه حقوق این وب‌سایت متعلق به گروه <a href="#" target="_blank">TPOOK</a> میباشد.</p>	
+			</div>
+		</div>
+	</footer>
+	</div>
+	
+	
+	<!-- jQuery -->
+	<script src="{% static 'patient/js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'patient/js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'patient/js/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'patient/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Owl Carousel -->
+	<script src="{% static 'patient/js/owl.carousel.min.js' %}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'patient/js/jquery.flexslider-min.js' %}"></script>
+
+	<!-- MAIN JS -->
+	<script src="{% static 'patient/js/main.js' %}"></script>
+
+	</body>
+</html>
+
