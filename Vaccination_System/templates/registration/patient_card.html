@@ -1,0 +1,42 @@
+{% extends 'registration/base.html' %}
+
+{% block title %} کارت واکسن بیمار {% endblock %}
+
+{% block meta %} کارت بیمار {% endblock %}
+
+{% block main %}
+    <div class="col-md-8 text-center mx-auto">
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title mb-0 float-left">کارت واکسناسیون کووید__19</h3>
+            </div>
+            <div class="card-body py-4">
+                <div class="col-12">
+                    <label style="width: 50px;">نام:</label><span>{{patient.name}}</span>
+                    <label style="width: 100px;">نام خانوادگی:</label><span>{{patient.family}}</span>
+                </div>
+                <hr>
+                <div class="col-12">
+                    <label style="width: 50px;">کد ملی:</label><span>{{patient.national_code}}</span>
+                </div>
+                <hr>
+                <div class="col-12">
+                    <label style="width: 100px;"> واکسن دوز اول:</label><span>{{patient.vaccine}}</span>
+                    <br>
+                    {% if patient.vaccine2 %}
+                        <label style="width: 100px;"> واکسن دوز دوم:</label><span>{{patient.vaccine2}}</span>
+                    {% else %}
+                    <label style="width: 100px;"> واکسن دوز دوم:</label><span>____</span>
+                    {% endif %}
+                </div>
+                <hr>
+                <div class="col-12">
+                    <label style="width: 100px;">تاریخ تزریق اول:</label><span>{{patient.jalali_doz1}}</span>
+                    <br>
+                    <label style="width: 110px;">تاریخ تزریق دوم:</label><span>{{patient.jalali_doz2}}</span>
+                </div>
+            </div>
+        </div>
+        <button onclick="window.print()">چاپ کارت</button>
+    </div>
+{% endblock %}

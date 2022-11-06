@@ -1,0 +1,101 @@
+{% load static %}
+{% load base_tags %}
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'adminpanel:profile' %}" class="brand-link">
+    <img src="{% static 'registration/adminlte/assets/img/TPOOK.png' %}" class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+    <span class="brand-text font-weight-light">ادمین پنل وبسایت</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img src="{{ user.profile_avatar.url }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a href="{% url 'adminpanel:profile' %}" class="d-block">
+                {% if user.get_full_name %}
+                    {{ user.get_full_name }}
+                {% else %}
+                    {{user.username}}
+                {% endif %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+        {% if user.is_superuser or request.user.is_author %}
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link 
+                    {% if request.resolver_match.url_name  == 'home' %}
+                        active
+                    {% elif request.resolver_match.url_name  == 'patient_create' %}
+                        active
+                    {% endif %}">
+                <i class="nav-icon fas fa fa-user-plus"></i>
+                <p>
+                    بیماران
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    {% link request 'home' 'لیست بیماران' 'fa-list' %}
+                </li>
+                <li class="nav-item">
+                    {% link request 'patient_create' 'افزودن بیمار' 'fa-edit' %}
+                </li>
+                </ul>
+                
+            </li>
+        {% endif %}
+        {% if user.is_superuser or request.user.special_user %}
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link 
+                    {% if request.resolver_match.url_name  == 'vaccine_list' %}
+                        active
+                    {% elif request.resolver_match.url_name  == 'vaccine_create' %}
+                        active
+                    {% endif %}">
+                <i class="nav-icon fas fa fa-syringe"></i>
+                <p>
+                    واکسن ها
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: block;">
+                <li class="nav-item">
+                    {% link request 'vaccine_list' 'لیست واکسن ها' 'fa-list' %}
+                </li>
+                <li class="nav-item">
+                    {% link request 'vaccine_create' 'افزودن واکسن' 'fa-edit' %}
+                </li>
+                </ul>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            {% link request 'profile' 'پروفایل' 'fa-address-card' %}
+        </li>
+        {% if user.is_superuser or user.special_user %}
+            <li class="nav-item">
+                {% link request 'status_control' 'وضعیت' 'fa-solid fa-laptop-medical' %} 
+            </li>
+        {% endif %}
+    </nav>
+    <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+
+
+

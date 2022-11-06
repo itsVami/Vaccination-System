@@ -1,0 +1,108 @@
+{% extends 'registration/base.html' %}
+
+{% block meta %} {{ search }} {% endblock %}
+
+{% block title %} جستجو اطلاعات بیمار : {{ search }} {% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12">
+
+            <div style="margin-right: 10px ; margin-bottom: 10px ;">
+                <form class="form-inline mt-3" action="{% url 'adminpanel:search' %}" autocomplete="off">
+                    <input type="text" name="q" class="form-control" placeholder="جستجوی بیمار">
+                    <button class="btn btn-success" style="padding: 7px ; border-radius: 8px ; margin-right: 5px ;">جستجو</button>
+                </form>
+            </div>
+
+            {% if object_list %}
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>نام بیمار</th>
+                                <th>نام خانوادگی بیمار</th>
+                                <th>شماره شناسنامه</th>
+                                <th>تاریخ تولد</th>
+                                <th>شماره تماس</th>
+                                <th>دوز اول</th>
+                                <th>نام واکسن دوز اول</th>
+                                <th>تاریخ دریافت دوز اول</th>
+                                <th>دوز دوم</th>
+                                <th>نام واکسن دوز دوم</th>
+                                <th>تاریخ دریافت دوز دوم</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for patient in object_list %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'adminpanel:patient_update' patient.pk %}">{{ patient.name }}</a>
+                                        </td>
+                                        <td>{{ patient.family }}</td>
+                                        <td>{{ patient.national_code }}</td>
+                                        <td>{{ patient.jalali_birth }}</td>
+                                        <td>{{ patient.phone_number }}</td>
+                                        <td>
+                                            {% if patient.doz1 %}
+                                                <i class="fa fa-check-circle" style="color: green;"></i>
+                                            {% else %}
+                                                <i class="fa fa-minus-circle" style="color: red;"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if patient.vaccine %}
+                                                {{ patient.vaccine }}
+                                            {% else %}
+                                                <i class="fa fa-minus-circle" style="color: red;"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if patient.doz1_time %}
+                                                {{ patient.jalali_doz1 }}
+                                            {% else %}
+                                                <i class="fa fa-minus-circle" style="color: red;"></i>
+                                            {% endif %}
+                                        </td>
+                                        
+                                        {% if patient.doz2 %}
+                                            <td>        
+                                                <i class="fa fa-check-circle" style="color: green;"></i>
+                                            </td>
+                                        {% else %}
+                                            <td>
+                                                <i class="fa fa-minus-circle" style="color: red;"></i>
+                                            </td>
+                                        {% endif %}
+                                            
+                                        <td>
+                                            {% if patient.vaccine2 %}
+                                                {{ patient.vaccine2 }}
+                                            {% else %}
+                                                <i class="fa fa-minus-circle" style="color: red;"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                        {% if patient.doz2_time %}
+                                            {{ patient.jalali_doz2 }}
+                                        {% else %}
+                                            <i class="fa fa-minus-circle" style="color: red;"></i>
+                                        {% endif %}
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            {% else %}
+                <h3>محتوایی برای نمایش وجود ندارد</h3>
+            {% endif %}
+            <!-- /.card -->
+        </div>
+    </div>
+{% endblock %}

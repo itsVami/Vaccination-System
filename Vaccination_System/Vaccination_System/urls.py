@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', include('patient.urls')),
     path('', include('vaccine.urls')),
+    path('adminpanel/', include('adminpanel.urls')),
 ]
 
 

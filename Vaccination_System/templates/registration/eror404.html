@@ -1,0 +1,21 @@
+{% extends 'registration/base.html' %}
+
+{% block meta %} خطای 404 {% endblock %}
+
+{% block title %} شما به این صفحه دسترسی ندارید {% endblock %}
+
+{% block main %}
+    <div class="col-md-8 text-center mx-auto">
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title mb-0 float-left">خطای 404</h3>
+            </div>
+            <div class="card-body py-4">
+                <form method="post">{% csrf_token %}
+                    <p class="py-2">شما به این صفحه دسترسی ندارید </p>
+                    <a class="btn btn-danger" href="{% url 'vaccine:vaccines' %}">برگشت به صفحه اصلی</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

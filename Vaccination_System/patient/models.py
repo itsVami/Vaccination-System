@@ -1,8 +1,27 @@
+from email.policy import default
+from itertools import count
 from django.db import models
 from vaccine.models import Vaccine
 from django.utils import timezone
+from django.urls import reverse
+from jalali_date import date2jalali
+from datetime import datetime , timedelta
 
-# My models
+
+# My Managers
+
+
+# My Models
+
+def get_doz2_time():
+    return datetime.today() + timedelta(days=21)
+
+def get_doz3_time():
+    return datetime.today() + timedelta(days=120)
+
+def get_doz4_time():
+    return datetime.today() + timedelta(days=120)
+    
 
 class Patient(models.Model):
     STATUS_CHOICES = (
@@ -22,19 +41,44 @@ class Patient(models.Model):
     doz1_time = models.DateField(default=timezone.now , verbose_name = 'تاریخ دریافت دوز اول')
     vaccine = models.ForeignKey(Vaccine , null = True , blank = True , on_delete = models.CASCADE , related_name = 'vaccine1' , verbose_name = 'نام واکسن دوز اول')
     doz2 = models.BooleanField(default = False , verbose_name = 'دوز دوم')
-    doz2_time = models.DateField(null = True , blank = True , verbose_name = 'تاریخ دریافت دوز دوم')
+    doz2_time = models.DateField(default=get_doz2_time , verbose_name = 'تاریخ دریافت دوز دوم')
     vaccine2 = models.ForeignKey(Vaccine , null = True , blank = True , on_delete = models.CASCADE , related_name = 'vaccine2' , verbose_name = 'نام واکسن دوز دوم')
     doz3 = models.BooleanField(default = False , verbose_name = 'دوز سوم')
-    doz3_time = models.DateField(null = True , blank = True , verbose_name = 'تاریخ دریافت دوز سوم')
-    vaccine3 = models.ForeignKey(Vaccine , null = True , on_delete = models.CASCADE , related_name = 'vaccine3' , verbose_name = 'نام واکسن دوز سوم') 
+    doz3_time = models.DateField(default=get_doz3_time , verbose_name = 'تاریخ دریافت دوز سوم')
+    vaccine3 = models.ForeignKey(Vaccine , null = True , blank = True , on_delete = models.CASCADE , related_name = 'vaccine3' , verbose_name = 'نام واکسن دوز سوم') 
     doz4 = models.BooleanField(default = False , verbose_name = 'دوز چهارم')
-    doz4_time = models.DateField(null = True , blank = True , verbose_name = 'تاریخ دریافت دوز چهارم')
+    doz4_time = models.DateField(default=get_doz4_time , verbose_name = 'تاریخ دریافت دوز چهارم')
     vaccine4 = models.ForeignKey(Vaccine , null = True , blank = True , on_delete = models.CASCADE , related_name = 'vaccine4' , verbose_name = 'نام واکسن دوز چهارم')
+
 
     class Meta :
         verbose_name = 'بیمار'
         verbose_name_plural = 'بیمار ها'
         ordering = ['name' ,'family']
-    
+
+
     def __str__(self):
         return self.name  
+  
+    def get_absolute_url(self):
+        return reverse('adminpanel:home')
+
+    def jalali_birth(self):
+        return date2jalali(self.birth_date)
+    jalali_birth.short_description = "تاریخ تولد" 
+
+    def jalali_doz1(self):
+        return date2jalali(self.doz1_time)
+    jalali_doz1.short_description = "تاریخ دریافت دوز اول"  
+
+    def jalali_doz2(self):
+        return date2jalali(self.doz2_time)
+    jalali_doz2.short_description = "تاریخ دریافت دوز دوم"  
+
+    def jalali_doz3(self):
+        return date2jalali(self.doz3_time)
+    jalali_doz3.short_description = "تاریخ دریافت دوز سوم"  
+
+    def jalali_doz4(self):
+        return date2jalali(self.doz4_time)
+    jalali_doz4.short_description = "تاریخ دریافت دوز چهارم"   

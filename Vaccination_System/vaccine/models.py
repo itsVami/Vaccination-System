@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils.html import format_html
+from django.urls import reverse
 
 #My_Managers
+
 class VaccineManager(models.Manager):
     def available (self):
         return self.filter(availablity = True)
@@ -36,11 +38,13 @@ class Vaccine(models.Model):
     name = models.CharField(max_length = 100 , verbose_name = 'نام واکسن')
     slug = models.SlugField(max_length = 100 , unique = True , verbose_name = 'نشانی واکسن')
     country = models.CharField(max_length = 100 , verbose_name = 'کشور تولید کننده')
-    count = models.CharField(max_length = 10 , verbose_name = 'تعداد دوز های موجود')
+    count = models.IntegerField(verbose_name = 'تعداد دوز های وارد شده')
     description = models.TextField(null = True , blank = True , verbose_name ='توضیحات واکسن')
     picture = models.ImageField(upload_to = "images" , default = 'images/vaccine_def.jpg' , verbose_name ='تصویر واکسن')
     availablity = models.BooleanField(default = True , verbose_name ='وضعیت موجودی واکسن')
     category = models.ManyToManyField(Category , related_name="vaccines" , verbose_name='دسته بندی')
+    usage = models.IntegerField(null = True , blank = True , verbose_name = 'تعداد دوز های موجود ')
+
 
     def is_available (self):
         if self.count == '0':
@@ -65,5 +69,8 @@ class Vaccine(models.Model):
     def Category_to_str(self):
         return " , ".join([category.title for category in self.category.active()])
     Category_to_str.short_description = "دسته بندی"
+
+    def get_absolute_url(self):
+        return reverse('adminpanel:vaccine_list')
 
     objects = VaccineManager()

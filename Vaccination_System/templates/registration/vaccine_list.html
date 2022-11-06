@@ -1,0 +1,59 @@
+{% extends 'registration/base.html' %}
+
+{% block title %} لیست واکسن ها {% endblock %}
+
+{% block meta %} لیست واکسن ها {% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12">
+            {% if object_list %}
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>نام واکسن</th>
+                                <th>تصویر واکسن</th>
+                                <th>نشانی واکسن</th>
+                                <th>دسته بندی</th>
+                                <th>کشور تولید کننده</th>
+                                <th>وضعیت موجودی واکسن</th>
+                                <th>تعداد دوز های وارد شده</th>
+                                <th>توضیحات واکسن</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for vaccine in object_list %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'adminpanel:vaccine_update' vaccine.pk %}">{{ vaccine.name }}</a>
+                                        </td>
+                                        <td><img src="{{ vaccine.picture.url }}" width="100" height="90" style="border-radius: 10px;"></td>
+                                        <td>{{ vaccine.slug }}</td>
+                                        <td>{{ vaccine.Category_to_str }}</td>
+                                        <td>{{ vaccine.country }}</td>
+                                        <td>
+                                            {% if vaccine.availablity %}
+                                                <i class="fa fa-check-circle" style="color: green;"></i>
+                                            {% else %}
+                                                <i class="fa fa-minus-circle" style="color: red;"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ vaccine.count }}</td>
+                                        <td>{{ vaccine.description | striptags | truncatewords:"30"  }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            {% else %}
+                <h3>محتوایی برای نمایش وجود ندارد</h3>
+            {% endif %}
+            <!-- /.card -->
+        </div>
+    </div>
+{% endblock %}

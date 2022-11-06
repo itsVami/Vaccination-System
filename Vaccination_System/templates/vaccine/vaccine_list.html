@@ -15,7 +15,7 @@
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
                             <div class="slider-text-inner">
                                 <h2 style="color: black;">استعلام واکسیناسیون کرونا</h2>
-                                <p><a href="#" class="btn btn-primary btn-lg">ورود به سامانه</a></p>
+                                <p><a href="{% url 'adminpanel:home' %}" class="btn btn-primary btn-lg">ورود به سامانه</a></p>
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
                             <div class="slider-text-inner">
                                 <h2 style="color: black;">ثبت نام واکسیناسیون کرونا</h2>
-                                <p><a href="#" class="btn btn-primary btn-lg">ورود به سامانه</a></p>
+                                <p><a href="{% url 'adminpanel:home' %}" class="btn btn-primary btn-lg">ورود به سامانه</a></p>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         </a>
                     </div>
                 {% empty %}
-                    <h4 style="padding: 8px ; margin-bottom: 45px;">متاسقانه محتوایی برای نمایش در این مورد وجود ندارد.</h4>
+                    <h4 style="padding: 8px ; margin-bottom: 45px; text-align: center;">متاسقانه محتوایی برای نمایش در این مورد وجود ندارد.</h4>
                 {% endfor %}
                
             </div>

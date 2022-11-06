@@ -1,0 +1,50 @@
+{% extends 'registration/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} پروفایل ادمین {% endblock %}
+
+{% block meta %} پروفایل ادمین {% endblock %}
+
+{% block main %}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">پروفایل </h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                        {{ form.username | as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.email | as_crispy_field }}
+                    </div>
+                    
+                    <div class="col-6">
+                        {{ form.first_name | as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.last_name | as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.profile_avatar | as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        <br>
+                        {% if  user.is_superuser or user.is_special %}
+                            {{ form.special_user | as_crispy_field }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <button class="btn btn-danger"> ویرایش پروفایل </button> 
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

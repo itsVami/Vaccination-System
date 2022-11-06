@@ -5,7 +5,7 @@ from .models import Patient
 
 class PatientAdmin(admin.ModelAdmin):
     list_display = (
-        'name' , 'family' , 'national_code' , 'birth_date' , 'doz1' , 'vaccine' , 'doz2' , 'vaccine2' , 'doz3' , 'vaccine3' , 'doz4' , 'vaccine4' ,
+        'name' , 'family' , 'national_code' , 'birth_date' , 'doz1' , 'vaccine' , 'doz1_time' , 'doz2' , 'vaccine2' , 'doz2_time' , 'doz3' , 'vaccine3' , 'doz4' , 'vaccine4' ,
     )
 
     list_filter = (

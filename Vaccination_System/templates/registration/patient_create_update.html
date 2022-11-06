@@ -1,0 +1,99 @@
+{% extends 'registration/base.html' %}
+
+{% load jalali_tags %}
+
+{% load static %}
+
+{% block title %} افزودن بیمار {% endblock %}
+
+{% block meta %} افزودن بیمار {% endblock %}
+
+{% block main %}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">افزودن بیمار</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" autocomplete="off">{% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                    <label style="width: 110px;">نام:</label><span>{{form.name}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">نام خانوادگی:</label><span>{{form.family}}</span>
+                    </div>
+
+                    <div class="col-6">
+                        <label style="width: 110px;">کد ملی:</label><span>{{form.national_code}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">شماره شناسنامه:</label><span>{{form.birth_certificate_number}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">تاریخ تولد:</label><span>{{form.birth_date}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">جنسیت:</label><span>{{form.gender}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">شماره تماس:</label><span>{{form.phone_number}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">آدرس:</label><span>{{form.address}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">دوز اول:</label><span>{{form.doz1}}</span>
+                        <br>
+                        <label style="width: 110px;">تاریخ دریافت دوز اول:</label><span>{{form.doz1_time}}</span>
+                        <br>
+                        <label style="width: 110px;">نام واکسن دوز اول:</label><span>{{form.vaccine}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">دوز دوم:</label><span>{{form.doz2}}</span>
+                        <br>
+                        <label style="width: 110px;">تاریخ دریافت دوز دوم:</label><span>{{form.doz2_time}}</span>
+                        <br>
+                        <label style="width: 110px;">نام واکسن دوز دوم:</label><span>{{form.vaccine2}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">دوز سوم:</label><span>{{form.doz3}}</span>
+                        <br>
+                        <label style="width: 110px;">تاریخ دریافت دوز سوم:</label><span>{{form.doz3_time}}</span>
+                        <br>
+                        <label style="width: 110px;">نام واکسن دوز سوم:</label><span>{{form.vaccine3}}</span>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label style="width: 110px;">دوز چهارم:</label><span>{{form.doz4}}</span>
+                        <br>
+                        <label style="width: 110px;">تاریخ دریافت دوز چهارم:</label><span>{{form.doz4_time}}</span>
+                        <br>
+                        <label style="width: 110px;">نام واکسن دوز چهارم:</label><span>{{form.vaccine4}}</span>
+                    </div>
+                    
+                </div>
+                
+                <br>
+                <br>
+
+                <button class="btn btn-success" type="submit">ثبت اطلاعات</button> 
+                {% if user.is_superuser or user.special_user and request.resolver_match.kwargs.pk %}
+                    <a href="{% url 'adminpanel:patient_delete' request.resolver_match.kwargs.pk %}" class="btn btn-danger">
+                        حذف
+                    </a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
